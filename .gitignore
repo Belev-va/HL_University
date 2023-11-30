@@ -1,0 +1,15 @@
+# Local .idea directories
+.idea
+# Local .terraform directories
+**/.terraform/*
+
+# Terraform lockfile
+.terraform.lock.hcl
+
+# .tfstate files
+*.tfstate
+*.tfstate.*
+*.tfplan
+# Secrets files for aws
+/IaC/access.txt
+/IaC/secret.txt
