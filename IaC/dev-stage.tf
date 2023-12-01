@@ -15,3 +15,15 @@ provider "aws" {
 }
 
 
+module "network" {
+  source = "./network"
+
+}
+
+module "instance" {
+  source         = "./instance"
+  instance_subnet_id = module.network.private_subnet_id
+  instance_security_group =module.network.default_security_group
+
+}
+
