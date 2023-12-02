@@ -1,4 +1,4 @@
-#General variables for network
+#General variables for module network
 variable "name" {
   type        = string
   default     = "dev"
@@ -10,24 +10,19 @@ variable "cidr_vpc" {
   description = "cidr block for vpc"
 }
 variable "cidr_public_subnet" {
-  type        = string
-  default     = "10.0.3.0/24"
-  description = "cidr block for public subnet"
+  type        =  list(string)
+  default     = ["10.0.2.0/24", "10.0.4.0/24"]
+  description = "cidr blocks for public subnet"
 }
 variable "cidr_private_subnet" {
-  type        = string
-  default     = "10.0.2.0/24"
-  description = "cidr block for private subnet"
+  type        =  list(string)
+  default     = ["10.0.3.0/24","10.0.5.0/24"]
+  description = "cidr blocks for private subnet"
 }
-variable "availability_zone_public" {
+variable "destination_cidr_block" {
   type        = string
-  default     = "us-east-1b"
-  description = "availability zone for public subnet"
-}
-variable "availability_zone_private" {
-  type        = string
-  default     = "us-east-1c"
-  description = "availability zone for public subnet"
+  default     = "0.0.0.0/0"
+  description = "destination_cidr_block"
 }
 
 

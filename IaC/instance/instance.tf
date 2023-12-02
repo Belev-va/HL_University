@@ -1,4 +1,6 @@
-// EC2 Instance Resource for Module
+#EC2 Instance module
+
+#Data block for search ami_id for any region
 data "aws_ami" "ubuntu" {
   most_recent = true
 
@@ -15,15 +17,18 @@ data "aws_ami" "ubuntu" {
   owners = ["099720109477"] # Canonical
 }
 
+#EC2 Instance
 resource "aws_instance" "instance" {
   ami                    = data.aws_ami.ubuntu.id
   instance_type          = var.instance_type
-  subnet_id              = var.instance_subnet_id
-  #vpc_security_group_ids = var.instance_security_group
+  subnet_id              = element(var.instance_subnet_id, count.index)
+  vpc_security_group_ids = var.instance_security_group
   count = var.instance_count
   tags = {
-    Name = "${var.instance_name}-${count.index + 1}"
+    Name = "${var.instance_name}_instance0${count.index + 1}"
+    Stage = var.instance_name
   }
-
 }
+
+
 
