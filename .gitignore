@@ -13,3 +13,4 @@
 # Secrets files for aws
 /IaC/access.txt
 /IaC/secret.txt
+/IaC/terraform_ec2_key.pub

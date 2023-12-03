@@ -8,7 +8,7 @@ resource "aws_vpc" "vpc" {
   enable_dns_hostnames = true
   tags = {
     Name  = "${var.name}_vpc"
-    Stage = var.name
+    Stand = var.name
   }
 }
 
@@ -17,7 +17,7 @@ resource "aws_internet_gateway" "igw" {
   vpc_id  = aws_vpc.vpc.id
   tags = {
     Name  = "${var.name}_igw"
-    Stage = var.name
+    Stand = var.name
   }
 }
 
@@ -29,8 +29,8 @@ resource "aws_subnet" "vpc_public_subnet" {
   availability_zone       = data.aws_availability_zones.available.names[count.index]
   map_public_ip_on_launch = "true"
   tags = {
-    Name  = "${var.name}_public_subnet${count.index + 1}"
-    Stage = var.name
+    Name  = "${var.name}_public_subnet_${count.index + 1}"
+    Stand = var.name
   }
 }
 
@@ -38,7 +38,7 @@ resource "aws_route_table" "rt_public" {
   vpc_id  = aws_vpc.vpc.id
   tags = {
     Name  = "${var.name}_rt_public"
-    Stage = var.name
+    Stand = var.name
   }
 }
 
@@ -62,7 +62,7 @@ resource "aws_subnet" "vpc_private_subnet" {
   availability_zone       = data.aws_availability_zones.available.names[count.index]
   tags = {
     Name  = "${var.name}_private_subnet_${count.index + 1}"
-    Stage = var.name
+    Stand = var.name
   }
 }
 
@@ -73,7 +73,7 @@ resource "aws_eip" "eip" {
   depends_on  = [aws_internet_gateway.igw]
   tags = {
     Name   = "${var.name}_eip_${count.index + 1}"
-    Stage  = var.name
+    Stand  = var.name
   }
 }
 
@@ -84,7 +84,7 @@ resource "aws_nat_gateway" "nat" {
   subnet_id     = element(aws_subnet.vpc_public_subnet[*].id, count.index)
   tags = {
     Name  = "${var.name}_nat_${count.index + 1}"
-    Stage = var.name
+    Stand = var.name
   }
 }
 
@@ -98,7 +98,7 @@ resource "aws_route_table" "rt_private" {
   }
   tags = {
     Name  = "${var.name}_rt_private_${count.index + 1}"
-    Stage = var.name
+    Stand = var.name
   }
 }
 

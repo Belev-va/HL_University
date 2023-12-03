@@ -17,15 +17,21 @@ variable "instance_type" {
 }
 
 variable "instance_subnet_id" {
-  type        =  list(string)
+  type        = list(string)
   default     = []
   description = "Subnet id for instance."
 }
 
 variable "instance_security_group" {
-  type        =  list(string)
+  type        = list(string)
   default     = []
   description = "Security group for instance."
+}
+
+variable "instance_key_name" {
+  type        = string
+  default     = "deployer-key"
+  description = "Key name for instance"
 }
 
 

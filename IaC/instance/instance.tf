@@ -24,11 +24,15 @@ resource "aws_instance" "instance" {
   subnet_id              = element(var.instance_subnet_id, count.index)
   vpc_security_group_ids = var.instance_security_group
   count = var.instance_count
+  key_name      = var.instance_key_name
   tags = {
     Name = "${var.instance_name}_instance0${count.index + 1}"
-    Stage = var.instance_name
+    Stand = var.instance_name
   }
 }
+
+
+
 
 
 
