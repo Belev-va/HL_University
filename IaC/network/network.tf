@@ -79,7 +79,7 @@ resource "aws_eip" "eip" {
 
 # Add NAT
 resource "aws_nat_gateway" "nat" {
-  count   = length(var.cidr_private_subnet)
+  count         = length(var.cidr_private_subnet)
   allocation_id = aws_eip.eip[count.index].id
   subnet_id     = element(aws_subnet.vpc_public_subnet[*].id, count.index)
   tags = {

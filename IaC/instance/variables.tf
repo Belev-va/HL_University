@@ -13,7 +13,7 @@ variable "instance_name" {
 variable "instance_type" {
   type        = string
   default     = "t2.micro"
-  description = "The compute engine machine type to use for server instances."
+  description = "The EC2 instance type to use for server instances."
 }
 
 variable "instance_subnet_id" {

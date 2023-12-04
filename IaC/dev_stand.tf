@@ -21,17 +21,17 @@ module "network" {
 }
 
 module "security_group"{
-  source = "./security_group"
-  vpc_id = module.network.vpc_id
+  source       = "./security_group"
+  vpc_id       = module.network.vpc_id
   private_cidr = module.network.public_cidr
 }
 
 module "private_instance" {
-  source         = "./instance"
+  source                  = "./instance"
   instance_name           = "dev_private"
-  instance_subnet_id = module.network.private_subnet_id
+  instance_subnet_id      = module.network.private_subnet_id
   instance_security_group = [module.security_group.private_security_group_id]
-  instance_count = 2
+  instance_count          = 2
 
 
 }

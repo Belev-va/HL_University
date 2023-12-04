@@ -65,6 +65,6 @@ resource "aws_security_group" "private_sg" {
 }
 
 resource "aws_key_pair" "deployer" {
-  key_name   = "deployer-key"
+  key_name   = var.key_name
   public_key =  file("terraform_ec2_key.pub")
 }

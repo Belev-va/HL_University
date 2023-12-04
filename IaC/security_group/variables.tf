@@ -36,4 +36,11 @@ variable "private_cidr" {
   description = "cidr block for vpc"
 }
 
+variable "key_name" {
+  type        = string
+  default     = "deployer-key"
+  description = "Name for stand"
+}
+
+
 
