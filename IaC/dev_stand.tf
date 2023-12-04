@@ -17,7 +17,10 @@ provider "aws" {
 
 module "network" {
   source = "./network"
+}
 
+module "key-pair" {
+  source = "./key-pair"
 }
 
 module "security_group"{
@@ -32,16 +35,15 @@ module "private_instance" {
   instance_subnet_id      = module.network.private_subnet_id
   instance_security_group = [module.security_group.private_security_group_id]
   instance_count          = 2
-
-
+  instance_key_name       = module.key-pair.key_name
 }
+
 module "public_instance" {
   source                  = "./instance"
   instance_name           = "dev_public"
   instance_count          = 1
   instance_subnet_id      = module.network.public_subnet_id
   instance_security_group = [module.security_group.public_security_group_id]
-  instance_key_name       = module.security_group.key_name
-
+  instance_key_name       = module.key-pair.key_name
 }
 
