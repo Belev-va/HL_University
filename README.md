@@ -23,7 +23,7 @@ You will need git, docker and docker compose installed on your machine. Open the
 
 1. Check out **Docker** directory and file structure. The current configuration will create and run 4 containers with Loki, Grafana, Promtail and nodeJS application.
   
-2.  Go to **Docker** directory. Copy the repository with nodeJS application: ```git clone git@github.com:digitalocean/sample-nodejs.git```. Than move **Dockerfile** and **.gitignore** files to **sample-nodejs** directory. Than use command ```docker compose up -d``` for build and pull images and run containers. Go to ***localhost:9990*** and check our nodeJS application. Go to ***localhost:3300*** and check Grafana and Loki. Open Home->Explore and choice ```container=node-app``` on the Label filters for show logs nodeJS application. For more detailed settings, change the configuration files in **config** directory and recreate images.
+2.  Go to **Docker** directory. Copy the repository with nodeJS application: ```git clone git@github.com:digitalocean/sample-nodejs.git```. Than move **Dockerfile** and **.dockerignore** files to **sample-nodejs** directory. Than use command ```docker compose up -d``` for build and pull images and run containers. Go to ***localhost:9990*** and check our nodeJS application. Go to ***localhost:3300*** and check Grafana and Loki. Open Home->Explore and choice ```container=node-app``` on the Label filters for show logs nodeJS application. For more detailed settings, change the configuration files in **config** directory and recreate images.
 
 ### 3. Programming. This section contains simple function for print prime numbers in selected range.
 Requirements:
