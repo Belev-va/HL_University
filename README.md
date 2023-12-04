@@ -1,118 +1,16 @@
-**ПРАВИЛА ОФОРМЛЕНИЯ ФАЙЛА README.MD НА GITHUB*
-<GITHUB></GITHUB>
-Если вы начали работу на GitHub, решили загрузить туда свой проект для совместной работы с единомышленниками, то, скорее всего, в первую очередь перед вами встанет проблема создания первого файла – файла «readme.md».
-
-Можно, конечно, просто выложить простой, неформатированный текстовой файл. Но вам захочется сделать его удобочитаемым, чтобы ссылки были выделены, блоки кода, присутствовали таблицы и так далее…
-Эта статья поможет вам в этом.
-
-Для форматирования текста на GitHub используются достаточно простые правила. Я перечислю основные и достаточные, так как не претендую на полноту официального руководства.
-
-Текст можно обработать в любом простом текстовом редакторе, например в Notepad++, которым пользуюсь сам. А можно и прямо на GitHub редактировать файл в он-лайн режиме.
-
-Стилистическая разметка должна быть такой:
-
-Разбиение на абзацы производится вставкой пустой строки между ними (нажмите "Enter" после абзаца).
-
-Горизонтальная полоса между абзацами - тег <hr> - три или более звёздочек или дефисов
-
-Первый абзац
-***
-Второй абзац
-или
-
-Первый абзац
+Descriptions and launching instructions
 ---
-Второй абзац
-Далее - заголовки и прочее:
+This repository contains 3 sections: IaC, Docker and Programming. Each block has its own requirements.
 
-h1 заголовок первого уровня
-=====================
-h2 заголовок второго уровня
 -----------------------------------
-### h3 заголовок третьего уровня
-#### h4 заголовок четвёртого уровня
-##### h5 заголовок пятого уровня
-###### h6 заголовок шестого уровня
-Оформление ссылки [Видимая часть, название ссылки] (http://webdesign.ru.net адрес ссылки - невидимая часть)
+### 1. IaC. This section contains terraform code for deploy infrastracture to AWS.
+Requirements:
+You will need terraform installed, AWS account and a pair of keys for ssh connection. 
 
-[Мой сайт](http://webdesign.ru.net)
-Если заключить адрес в угловые скобки, то он автоматически станет ссылкой
+***Warning: NAT Gateway is not provided within AWS Free Tier and costs $0.045 per hour***
 
-<http://webdesign.ru.net>
-Выделение жирным шрифтом
+1. Check out **IaC** directory and file structure. The current configuration will create a virtual network with 1 private and 1 public subnet. To access the Internet from a public network Internet gateway will be created for a private nat gateway. Route tables and associations between gateways and subnets will also be created. 3 servers will be created, 2 in a private subnet and one in a public subnet.
+  In the security group module, 2 security groups and a key pair are created. First group for ssh connect to the machine in a public network from your computer. Second security group allows connection via ssh from a public subnet to a private subnet. 
+  The **network** and **instances** are described as modules. Modules are initialized in the **dev_stand.tf** file. You can change parameters to modules for create another infrastructure. The parameters accepted are only those described in the **variables.tf** file of appropriate module.
+2.  Go to folder IaC and add 3 secret files: access.txt and secret.txt keys for your AWS User with administrator permissions. And terraform_ec2_key.pub - public key from your ssh key pair. Than run command: **terraform init** for initialization, **terraform plan** for preview the changes and **terraform apply** for deploy infrastracture. 
 
-**Жирный шрифт**
-***Наклонный жирный***
-Выделение тёмным фоном прямо в тексте
-
-`выделенные слова`
-Блок текста с более тёмным фоном, четыре пробела (и более) от начала каждой строки
-
-    dir /fonts
-    dir /images
-    dir /js
-Блоки текста с подвеченным синтаксисом. Выделенный цветом фона блок с html-кодом. Теги выделяются цветом по правилам html
-
-```html
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-```
-Выделенный цветом фона блок с php-кодом. Теги выделяются цветом по правилам php
-
-```php
-<?php here_pagecontent(); ?>
-```
-Выделенный цветом фона блок с каскадными таблицами. Теги выделяются цветом по правилам css
-
-```scss /* или css */
-@import "bower_components/tree-normalize/generic.normalize";
-h1 {
- font-size:1.5em;
- font-weight: 300;
-}
-```
-И так далее...
-
-Блок текста, выделенный тёмной полосой по левому краю (цитата)
-
-> Текст
-> 
-> Продолжение текста выделенного блока
-> Завершение текста
-Допустимы вложенные цитаты (цитата в цитате). Тогда цитата второго уровня выделяется двумя знаками ">>", а цитата третьего уровня вложенности - тремя.
-
-Таблица с чередованием светлых и тёмных строк (зебра)
-
-Название файла  | Содержание файла
-----------------|----------------------
-style.css       | Пустой файл каскадной таблицы стилей, в который производится сбока необходимых стилей
-reset.css       | Reset CSS от Эрика Мейера
-normalize.css   | Нормалайзер CSS от Nicolas Gallagher
-block.css       | Основные стили блоков системы
-addition.css    | Дополнительные стили
-fontawesome.css | Стили иконочного шрифта
-layout.css      | Основные стили, применительно к определённому сайту
-lightbox.css    | Стили лайтбокса, если таковой используется
-index.html      | Индексный файл для проверки вносимых изменений
-<li> Листинг - ненумерованый список
-
-* Пункт 1
-* Пункт 2
-* Пункт 3
-Нумерованный список создаётся ещё проще:
-
-1. Пункт 1
-2. Пункт 2
-3. Пункт 3
-italic - наклонный шрифт. Пробел, знак препинания или подчёркивание отменяют правило маркера
-
-_наклонный_ _шрифт_ _наклонный__шрифт_
-Комбинируя эти маркеры вы сможете правильно разметить свой текст, сделать его более понятным.
-
-Надеюсь, что эта статья будет вам полезна. Успехов в работе на GitHub!
-
-UPDATE!
-
-Вставка изображения в текст
-
-![screenshot of sample](http://webdesign.ru.net/images/Heydon_min.jpg)
-Восклицательный знак обозначает изображение, в квадратных скобках даётся краткое описание, в обычных круглых скобках - полная ссылка на изображение.
