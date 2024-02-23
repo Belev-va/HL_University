@@ -9,6 +9,10 @@ variable "instance_name" {
   default     = "dev"
   description = "Name for instances."
 }
+variable "aws_ami" {
+  type       = string
+  default    = "ami-0aedf6b1cb669b4c7"
+}
 
 variable "instance_type" {
   type        = string
