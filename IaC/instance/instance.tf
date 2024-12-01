@@ -5,7 +5,7 @@
 
 #EC2 Instance
 data "aws_secretsmanager_secret" "ssh_private_key" {
-  name = "my_github-ssh-key_2"  # Имя секрета в Secrets Manager
+  name = "my_github-ssh-key"  # Имя секрета в Secrets Manager
 }
 
 data "aws_secretsmanager_secret_version" "ssh_key_version" {

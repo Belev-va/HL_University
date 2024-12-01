@@ -36,7 +36,8 @@
 
   # Клонирование репозитория
   cd /home/ubuntu
-  git clone git@github.com:Belev-va/twodomainsonnginx.git
+  sudo -u ubuntu ssh-agent bash -c "ssh-add /home/ubuntu/.ssh/id_rsa && git clone git@github.com:Belev-va/twodomainsonnginx.git"
+
   # Деплой приложения
   cd twodomainsonnginx
   docker compose up -d
