@@ -17,16 +17,20 @@ provider "aws" {
 
 module "network" {
   source = "../modules/network"
+  name = "test"
+  create_private_subnets = false
 }
 
 module "key-pair" {
   source = "../modules/key-pair"
+
 }
 
 module "security_group"{
   source       = "../modules/security_group"
   vpc_id       = module.network.vpc_id
   private_cidr = module.network.public_cidr
+  create_private_sg  = false
 }
 
 module "private_instance" {

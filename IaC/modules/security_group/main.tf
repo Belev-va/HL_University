@@ -1,5 +1,6 @@
 # Default security group
 resource "aws_security_group" "public_sg" {
+  count       = var.create_public_sg ? 1 : 0
   name        = "${var.name}_public_sg"
   description = var.public_description
   vpc_id      = var.vpc_id
@@ -39,6 +40,7 @@ resource "aws_security_group" "public_sg" {
 }
 
 resource "aws_security_group" "private_sg" {
+  count       = var.create_private_sg ? 1 : 0
   name        = "${var.name}_private_sg"
   description = var.private_description
   vpc_id      = var.vpc_id

@@ -1,4 +1,10 @@
 #General variables for module network
+variable "create_private_subnets" {
+  description = "Определяет, создавать ли private subnets и связанные ресурсы"
+  type        = bool
+  default     = true
+}
+
 variable "name" {
   type        = string
   default     = "dev"

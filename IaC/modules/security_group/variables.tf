@@ -36,6 +36,17 @@ variable "private_cidr" {
   description = "cidr block for vpc"
 }
 
+variable "create_private_sg" {
+  description = "Определяет, создавать ли private security group"
+  type        = bool
+  default     = true
+}
+
+variable "create_public_sg" {
+  description = "Определяет, создавать ли public security group"
+  type        = bool
+  default     = true
+}
 
 
 
