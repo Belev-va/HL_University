@@ -4,6 +4,7 @@
 
 
 #EC2 Instance
+
 resource "aws_instance" "instance" {
   ami                    = var.aws_ami
   instance_type          = var.instance_type
@@ -11,8 +12,9 @@ resource "aws_instance" "instance" {
   vpc_security_group_ids = var.instance_security_group
   count                  = var.instance_count
   key_name               = var.instance_key_name
+  user_data = file(var.user_data)
   tags = {
-    Name = "${var.instance_name}_instance0${count.index + 1}"
+    Name = "${var.instance_name}_instance_${count.index + 1}"
     Stand = var.instance_name
   }
 }

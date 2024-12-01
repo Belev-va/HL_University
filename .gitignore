@@ -14,3 +14,5 @@
 /IaC/access.txt
 /IaC/secret.txt
 /IaC/terraform_ec2_key.pub
+/IaC/terraform_ec2_key3.pub
+/IaC/id_ed25519

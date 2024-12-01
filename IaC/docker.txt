@@ -1,0 +1,26 @@
+<<-EOF
+    #!/bin/bash
+    sudo apt-get update
+    sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common git
+    echo "${var.ssh_private_key}" > /home/ubuntu/.ssh/id_rsa
+    chmod 600 /home/ubuntu/.ssh/id_rsa
+
+    # Устанавливаем Docker
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+    sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+    sudo apt-get update
+    sudo apt-get install -y docker-ce docker-compose
+    sudo systemctl start docker
+    sudo systemctl enable docker
+
+    # Конфигурация Git
+    git config --global user.name "Belev-va"
+    git config --global user.email "belev.job@gmail.com"
+
+
+    # Устанавливаем конфигурацию для SSH-соединений с GitHub
+    echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> /home/ubuntu/.ssh/config
+    cd /home
+    # Клонируем репозиторий
+    git clone git@github.com:Belev-va/twodomainsonnginx.git
+  EOF

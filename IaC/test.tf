@@ -34,16 +34,18 @@ module "private_instance" {
   instance_name           = "dev_private"
   instance_subnet_id      = module.network.private_subnet_id
   instance_security_group = [module.security_group.private_security_group_id]
-  instance_count          = 6
+  instance_count          =  0
   instance_key_name       = module.key-pair.key_name
 }
 
 module "public_instance" {
   source                  = "./instance"
   instance_name           = "dev_public"
+  aws_ami = "ami-0866a3c8686eaeeba"
   instance_count          = 1
   instance_subnet_id      = module.network.public_subnet_id
   instance_security_group = [module.security_group.public_security_group_id]
   instance_key_name       = module.key-pair.key_name
+
 }
 

@@ -11,7 +11,7 @@ variable "instance_name" {
 }
 variable "aws_ami" {
   type       = string
-  default    = "ami-0aedf6b1cb669b4c7"
+  default    = "ami-0ff8a91507f77f867"
 }
 
 variable "instance_type" {
@@ -38,5 +38,12 @@ variable "instance_key_name" {
   description = "Key name for instance"
 }
 
-
+variable "user_data" {
+  default = "docker.txt"
+}
+variable "private_key" {
+  type        = string
+  default     = "id_ed25519"
+  description = "The name of public key file"
+}
 
