@@ -6,7 +6,7 @@ variable "key_name" {
 }
 variable "public_key" {
   type        = string
-  default     = "terraform_ec2_key.pub"
+  default     = "../terraform_ec2_key.pub"
   description = "The name of public key file"
 }
 

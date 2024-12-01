@@ -41,7 +41,7 @@ variable "instance_key_name" {
 variable "user_data_file" {
   description = "The name of the user data file"
   type        = string
-  default     = "./scripts/git_and_docker.sh"  # Укажите файл по умолчанию, если не передан другой
+  default     = "../scripts/git_and_docker.sh"  # Укажите файл по умолчанию, если не передан другой
 }
 variable "ssh_private_key" {
   type        = string
