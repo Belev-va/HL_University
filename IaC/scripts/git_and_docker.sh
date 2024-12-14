@@ -35,9 +35,9 @@
   chmod 644 /home/ubuntu/.ssh/config
 
   # Клонирование репозитория
-  cd /home/ubuntu
-  sudo -u ubuntu ssh-agent bash -c "ssh-add /home/ubuntu/.ssh/id_rsa && git clone git@github.com:Belev-va/twodomainsonnginx.git"
+  #cd /home/ubuntu
+  #sudo -u ubuntu ssh-agent bash -c "ssh-add /home/ubuntu/.ssh/id_rsa && git clone git@github.com:Belev-va/twodomainsonnginx.git"
 
   # Деплой приложения
-  cd twodomainsonnginx
-  docker compose up -d
+  #cd twodomainsonnginx
+  #docker compose up -d
