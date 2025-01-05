@@ -13,6 +13,7 @@ data "aws_secretsmanager_secret_version" "ssh_key_version" {
 }
 
 
+
 resource "aws_instance" "instance" {
   ami                    = var.aws_ami
   instance_type          = var.instance_type
@@ -24,6 +25,7 @@ resource "aws_instance" "instance" {
   #user_data = file(var.user_data_file)
   user_data = templatefile(var.user_data_file, {
     ssh_private_key = data.aws_secretsmanager_secret_version.ssh_key_version.secret_string
+    ips = var.public_instance_ips
   })
 
 

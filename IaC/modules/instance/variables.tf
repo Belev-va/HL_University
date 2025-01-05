@@ -48,4 +48,7 @@ variable "ssh_private_key" {
   default     = "id_ed25519"
   description = "The name of public key file"
 }
+variable "public_instance_ips" {
+  default = ""
+}
 
