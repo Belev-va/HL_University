@@ -1,9 +1,5 @@
 #EC2 Instance module
 
-#Data block for search ami_id for any region
-
-
-#EC2 Instance
 data "aws_secretsmanager_secret" "ssh_private_key" {
   name = "my_github-ssh-key"  # Имя секрета в Secrets Manager
 }
@@ -11,7 +7,6 @@ data "aws_secretsmanager_secret" "ssh_private_key" {
 data "aws_secretsmanager_secret_version" "ssh_key_version" {
   secret_id = data.aws_secretsmanager_secret.ssh_private_key.id
 }
-
 
 
 resource "aws_instance" "instance" {
