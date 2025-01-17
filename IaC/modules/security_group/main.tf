@@ -5,39 +5,14 @@ resource "aws_security_group" "public_sg" {
   description = var.public_description
   vpc_id      = var.vpc_id
 
-  ingress {
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
-    cidr_blocks = var.public_cidr
-  }
-
-  ingress {
-    from_port   = 23
-    to_port     = 23
-    protocol    = "tcp"
-    cidr_blocks = var.public_cidr
-  }
-
-  ingress {
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = var.public_cidr
-  }
-
-  ingress {
-    from_port   = 443
-    to_port     = 443
-    protocol    = "tcp"
-    cidr_blocks = var.public_cidr
-  }
-
-  ingress {
-    from_port   = 8000
-    to_port     = 8000
-    protocol    = "tcp"
-    cidr_blocks = var.public_cidr
+  dynamic "ingress" {
+    for_each = var.allowed_public_ports
+    content {
+      from_port   = ingress.value
+      to_port     = ingress.value
+      protocol    = "tcp"
+      cidr_blocks = var.public_cidr
+    }
   }
   egress {
     from_port   = 0
