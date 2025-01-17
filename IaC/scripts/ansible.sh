@@ -30,7 +30,24 @@ then
     exit 1
 fi
 
-echo "Ansible успешно установлен."
+# Устанавливаем дополнительные утилиты tree и netstat
+sudo apt-get install -y tree net-tools
+
+# Проверка установки tree
+if ! command -v tree &> /dev/null
+then
+    echo "Утилита tree не установлена. Проверьте логи для устранения ошибки."
+    exit 1
+fi
+
+# Проверка установки netstat
+if ! command -v netstat &> /dev/null
+then
+    echo "Утилита netstat не установлена. Проверьте логи для устранения ошибки."
+    exit 1
+fi
+
+echo "Ansible, tree и netstat успешно установлены."
 
 # Создание необходимых файлов для Ansible
 touch $KNOWN_HOSTS_FILE
@@ -43,9 +60,5 @@ echo "${ip} ansible_python_interpreter=/usr/bin/python3.12" >> $HOSTS_FILE
 ssh-keyscan -H ${ip} >> $KNOWN_HOSTS_FILE
 %{ endfor ~}
 
-
 # Вывод завершения
 echo "Настройка завершена. IP-адреса добавлены в файл $HOSTS_FILE, fingerprints в $KNOWN_HOSTS_FILE."
-
-
-

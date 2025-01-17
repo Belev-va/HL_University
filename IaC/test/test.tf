@@ -52,7 +52,7 @@ module "public_instance" {
   instance_name           = "mvp"
   #instance_type           = "t3.large"
   aws_ami                 = "ami-0866a3c8686eaeeba"
-  instance_count          = 2
+  instance_count          = 1
   instance_subnet_id      = module.network.public_subnet_id
   instance_security_group = [module.security_group.public_security_group_id]
   instance_key_name       = module.key-pair_ansible.key_name
@@ -62,7 +62,7 @@ module "public_instance" {
 module "public_instance_2" {
   source                  = "../modules/instance"
   instance_name           = "ansible"
-  #instance_type           = "t3.large"
+  instance_type           = "t3.large"
   aws_ami                 = "ami-0866a3c8686eaeeba"
   user_data_file          = "../scripts/ansible.sh"
   instance_count          = 1
