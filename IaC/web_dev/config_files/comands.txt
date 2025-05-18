@@ -1,0 +1,48 @@
+sudo mv bitnami-ssl.conf bitnami-ssl.conf.disabled
+sudo nano /opt/bitnami/apache2/conf/bitnami/bitnami.conf
+cat ~/.ssh/authorized_keys
+
+sudo cat /var/log/cloud-init-output.log
+
+sudo nano /opt/bitnami/apache2/conf/vhosts/wordpress-vhost.conf
+sudo nano /opt/bitnami/wordpress/wp-config.php
+sudo nano /opt/bitnami/wordpress/.htaccess
+
+Maintence:
+sudo /opt/bitnami/ctlscript.sh restart
+
+Тестовый стенд:
+sudo nano /opt/bitnami/php/etc/memory.conf
+pm.max_children=4
+pm.start_servers=2
+pm.min_spare_servers=1
+pm.max_spare_servers=3
+pm.max_requests=4000
+sudo /opt/bitnami/ctlscript.sh restart php-fpm
+
+Сейчас у тебя swap = 634 MB, но используется всего 13 MB. Это значит, что система почти не выгружает процессы в swap, хотя оперативка почти забита.
+
+Увеличим swap до 2 GB:
+
+bash
+Копировать
+Редактировать
+sudo swapoff -a
+sudo fallocate -l 2G /swapfile
+sudo chmod 600 /swapfile
+sudo mkswap /swapfile
+sudo swapon /swapfile
+Проверить:
+
+bash
+Копировать
+Редактировать
+free -m
+Чтобы сделать swap постоянным, добавь в /etc/fstab:
+
+bash
+Копировать
+Редактировать
+echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
+
+

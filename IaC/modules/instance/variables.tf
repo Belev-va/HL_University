@@ -52,3 +52,38 @@ variable "public_instance_ips" {
   default = ""
 }
 
+variable "os_name" {
+  description = "Название операционной системы"
+  type        = string
+  default     = "ubuntu"
+}
+
+variable "os_version" {
+  description = "Версия ОС (например, 22.04 для Ubuntu)"
+  type        = string
+  default     = "22.04"
+}
+
+locals {
+  ami_name_patterns = {
+    amazon-linux = "amzn2-ami-hvm-*-x86_64-gp2"
+    ubuntu       = "ubuntu/images/hvm-ssd/ubuntu-*${var.os_version}*-amd64-server-*"
+    debian       = "debian-*${var.os_version}*"
+  }
+
+  ami_owners = {
+    amazon-linux = "137112412989"  # AWS Amazon Linux
+    ubuntu       = "099720109477"  # Canonical (Ubuntu)
+    debian       = "136693071363"  # Debian
+  }
+}
+
+variable "instance_volume_size" {
+  description = "Размер диска в GiB"
+  type        = number
+  default     = 30
+}
+
+
+
+

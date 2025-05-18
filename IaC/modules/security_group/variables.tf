@@ -2,7 +2,7 @@
 variable "allowed_public_ports" {
   description = "Список портов для открытия"
   type        = list(number)
-  default     = [80, 2222, 22, 443, 8080]  # Здесь можно указать любые порты
+  default     = [80, 2222, 22, 443, 8080, 10050]
 }
 
 variable "name" {
